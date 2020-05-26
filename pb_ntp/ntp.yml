@@ -1,0 +1,9 @@
+---
+- name: SaaS NTP configuration Audit
+  hosts: all
+  gather_facts: no
+  
+  tasks:
+  - name: Set NTP server
+    ios_ntp:
+      server: 10.10.10.1
