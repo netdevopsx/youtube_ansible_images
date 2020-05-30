@@ -6,7 +6,7 @@ ARG UID=1000
 ARG GID=1000
 RUN yum update -y
 COPY requirements-yum.txt /tmp/requirements-yum.txt
-RUN xargs yum install -y < /tmp/requirements-yum.txt
+RUN yum install -y $(strings -1 /tmp/requirements-yum.txt | tr '\n' ' ')
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install --upgrade -r /tmp/requirements.txt
 RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PASS}" | \
